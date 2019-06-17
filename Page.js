@@ -1,7 +1,7 @@
-import dbRow from './../qg/dbRow.mjs';
-import TextPro from './../qg/TextPro.mjs';
+import Row from 'https://raw.githubusercontent.com/nuxodin/nux_db/master/Row.js';
+import TextPro from './TextPro.mjs';
 
-const Page = class extends dbRow {
+const Page = class extends Row {
     constructor(table, id) {
         const P = super(table, id);
         this.edit = true;
@@ -9,9 +9,6 @@ const Page = class extends dbRow {
     }
     async render() {
         let mod = await this.$module;
-        mod = mod.replace(/^cms\./,'');
-        mod = mod.replace(/^cont\./,'');
-
         const templates = this.table.cmsTemplates;
         if (!templates[mod]) return '<div>module does not exist</div>';
         let string = await templates[mod](this);
