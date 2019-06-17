@@ -25,7 +25,7 @@ templates['cms.layout.custom.6'] = async (page) => {
         <p>${page.text('main','de')}</p>
         <div>${(await page.cont('main')).render()}</div>
         text-Element:
-        <div style="border:1px solid red">${(await page.cont('text','text')).render()}</div>
+        <div style="border:1px solid red">${(await page.cont('text','cms.cont.text')).render()}</div>
     </div>`;
 };
 templates['cms.layout.custom.7'] = async (page) => {
@@ -36,7 +36,7 @@ templates['cms.layout.custom.7'] = async (page) => {
         <div>${(await page.cont('main')).render()}</div>
         template custom.7:
         text-Element:
-        <div style="border:1px solid red">${(await page.cont('text','text')).render()}</div>
+        <div style="border:1px solid red">${(await page.cont('text','cms.cont.text')).render()}</div>
     </div>`;
 };
 
