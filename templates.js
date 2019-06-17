@@ -30,5 +30,16 @@ templates['layout.custom.6'] = async (page) => {
         <div style="border:1px solid red">${(await page.cont('text','text')).render()}</div>
     </div>`;
 };
+templates['layout.custom.7'] = async (page) => {
+    return await c1Render`
+    <div>
+        <h1>${page.title('de')}</h1>
+        <p>${page.Text('main','de')}</p>
+        <div>${(await page.cont('main')).render()}</div>
+        template custom.7:
+        text-Element:
+        <div style="border:1px solid red">${(await page.cont('text','text')).render()}</div>
+    </div>`;
+};
 
 export default templates;
