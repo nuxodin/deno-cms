@@ -32,6 +32,7 @@ const Page = class extends Row {
                 const textPro = await TextPro.generate(this.db);
                 row.$text_id = text_id = textPro.id;
             }
+            console.log('text_id');
             console.log(text_id);
             this._texts[name] = await TextPro(this.db, text_id);
         }
