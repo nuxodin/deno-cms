@@ -12,7 +12,7 @@ var templates = Object.create(null);
 
 
 templates['cms.cont.text'] = async (page) => {
-    const Text = await page.Text('main','de');
+    const Text = await page.text('main','de');
     return '<div'+(page.edit?' contenteditable cmstxt='+Text.id : '')+'>'+Text+'</div>';
 };
 templates['cms.cont.flexible'] = async (page) => {
@@ -22,7 +22,7 @@ templates['cms.layout.custom.6'] = async (page) => {
     return await c1Render`
     <div>
         <h1>${page.title('de')}</h1>
-        <p>${page.Text('main','de')}</p>
+        <p>${page.text('main','de')}</p>
         <div>${(await page.cont('main')).render()}</div>
         text-Element:
         <div style="border:1px solid red">${(await page.cont('text','text')).render()}</div>
@@ -32,7 +32,7 @@ templates['cms.layout.custom.7'] = async (page) => {
     return await c1Render`
     <div>
         <h1>${page.title('de')}</h1>
-        <p>${page.Text('main','de')}</p>
+        <p>${page.text('main','de')}</p>
         <div>${(await page.cont('main')).render()}</div>
         template custom.7:
         text-Element:
