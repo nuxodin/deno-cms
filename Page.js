@@ -27,7 +27,7 @@ const Page = class extends Row {
             await row.makeIfNot();
             let text_id = await row.$text_id;
             if (!text_id) {
-                console.log('generate')
+                console.log('generate2')
                 const textPro = await TextPro.generate(this.db);
                 row.$text_id = text_id = textPro.id;
             }
