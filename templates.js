@@ -28,6 +28,7 @@ templates['cms.layout.custom.6'] = async (page) => {
         <div style="border:1px solid red">${(await page.cont('text','text')).render()}</div>
     </div>`;
 };
+
 templates['cms.layout.custom.7'] = async (page) => {
     return await c1Render`
     <div>
