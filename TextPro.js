@@ -8,6 +8,7 @@ class TextPro {
     }
     async get(lang){
         if (!this._texts[lang]){
+            console.log({id:this.id, lang});
             const rowId = await this.db.$text.rowId({id:this.id, lang});
             this._texts[lang] = this.db.$text.row(rowId);
         }
