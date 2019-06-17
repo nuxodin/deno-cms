@@ -7,6 +7,7 @@ const Page = class extends Row {
     constructor(db, id) {
         const P = super(db, id);
         this.edit = true;
+        this._named = {p:{},c:{}};
         return P;
     }
     async render() {
@@ -46,40 +47,28 @@ const Page = class extends Row {
 
     async children() {
         if (!this._children) {
-            this._children = [];
-            const children = await this.table.rows({basis:this.eid});
-            for (let child of children) {
-                this._children.push(child);
+            this._children = {p:[],c:[]};
+            const all = await this.table.rows({basis:this.eid});
+            for (let child of all) {
                 let values = await child.values();
-
-                !this._Named && (this._Named = {});
-                !this._Named[values.type] && (this._Named[values.type] = {});
-
-                this._Named[values.type][values.name] = child;
+                this._children[values.type].push(child);
+                this._named[values.type][values.name] = child;
             }
         }
         return this._children;
     }
     async contents() {
-        if (!this._contents) {
-            this._contents = await this.table.rows({basis:this.eid, type:'c'});
-            // named
-            if (!this._namedContents) this._namedContents = {};
-            for (let child of this._contents) {
-                const name = await child.$name;
-                this._namedContents[name] = child;
-            }
-        }
-        return this._contents;
+        await this.children();
+        return this._children['c'];
     }
     async cont(name, attris={}) {
         await this.contents();
-        if (!this._namedContents[name]) {
+        if (!this._named['c'][name]) {
             if (typeof attris === 'string') attris = {module:attris};
             attris['name'] = name;
-            this._namedContents[name] = await this.createCont(attris);
+            this._named['c'][name] = await this.createCont(attris);
         }
-        return this._namedContents[name];
+        return this._named['c'][name];
     }
     async createCont(options) {
         options = Object.assign({
