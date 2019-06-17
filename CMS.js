@@ -8,15 +8,13 @@ class cms {
     Page(id){
         return this.db.$page.row(id);
     }
-    async pageFromRequest(req) {
-        var requestURL = req.originalUrl.substring(1);
-        var page_id = await this.db.one("SELECT page_id FROM page_url WHERE url = "+this.db.quote(requestURL));
+    async pageFromRequest(url) {
+        var page_id = await this.db.one("SELECT page_id FROM page_url WHERE url = "+this.db.quote(url));
         if (!page_id) return false;
         return this.Page(page_id);
     }
-    async redirectFromRequest(req) {
-        var requestURL = req.originalUrl.substring(1);
-        var redirect = await this.db.one("SELECT redirect FROM page_redirect WHERE request = "+this.db.quote(requestURL));
+    async redirectFromRequest(url) {
+        var redirect = await this.db.one("SELECT redirect FROM page_redirect WHERE request = "+this.db.quote(url));
         if (!redirect) return false;
         if (redirect.match(/[0-9]+/)) {
             let page = this.Page(redirect);
