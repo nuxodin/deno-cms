@@ -11,7 +11,7 @@ const Page = class extends Row {
     }
     async render() {
         let mod = await this.$module;
-        const templates = this.table.cmsTemplates;
+        //const templates = this.table.cmsTemplates;
         if (!templates[mod]) return '<div>module does not exist</div>';
         let string = await templates[mod](this);
         if (!string) string = '<div></div>';
