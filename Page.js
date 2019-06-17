@@ -10,13 +10,14 @@ const Page = class extends Row {
         return P;
     }
     async render() {
-        let mod = await this.$module;
+        let module = await this.$module;
         //const templates = this.table.cmsTemplates;
-        if (!templates[mod]) return '<div>module does not exist</div>';
-        let string = await templates[mod](this);
+
+        if (!templates[module]) return '<div>module does not exist</div>';
+        let string = await templates[module](this);
         if (!string) string = '<div></div>';
-        const data = await this.values();
-        let $attr = ' vcms-id="'+this.eid+'" vcms-mod="'+data['module']+'"';
+        //const data = await this.values();
+        let $attr = ' vcms-id="'+this.eid+'" vcms-mod="'+module+'"';
         string = string.replace(/^<([^\s>]+)([\s]?)/, '<$1 '+$attr+'$2');
         return string;
     }
