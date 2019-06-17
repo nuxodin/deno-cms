@@ -11,14 +11,14 @@ let c1Render = async function (strings, ...values){
 var templates = Object.create(null);
 
 
-templates.text = async (page) => {
+templates['cms.cont.text'] = async (page) => {
     const Text = await page.Text('main','de');
     return '<div'+(page.edit?' contenteditable cmstxt='+Text.id : '')+'>'+Text+'</div>';
 };
-templates.flexible = async (page) => {
+templates['cms.cont.flexible'] = async (page) => {
     return await c1Render`<div>${(await page.contents()).map(content=>{ return content.render(); })}</div>`;
 };
-templates['layout.custom.6'] = async (page) => {
+templates['cms.layout.custom.6'] = async (page) => {
     return await c1Render`
     <div>
         <h1>${page.title('de')}</h1>
@@ -28,7 +28,7 @@ templates['layout.custom.6'] = async (page) => {
         <div style="border:1px solid red">${(await page.cont('text','text')).render()}</div>
     </div>`;
 };
-templates['layout.custom.7'] = async (page) => {
+templates['cms.layout.custom.7'] = async (page) => {
     return await c1Render`
     <div>
         <h1>${page.title('de')}</h1>
