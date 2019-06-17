@@ -1,5 +1,3 @@
-//import viperHTML from 'viperHTML';
-
 let c1Render = async function (strings, ...values){
 	values = await Promise.all(values);
 	let result = '';

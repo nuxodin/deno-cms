@@ -13,6 +13,7 @@ const Page = class extends Row {
         let module = await this.$module;
         //const templates = this.table.cmsTemplates;
 
+        console.log(module);
         if (!templates[module]) return '<div>module does not exist</div>';
         let string = await templates[module](this);
         if (!string) string = '<div></div>';
