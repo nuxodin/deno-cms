@@ -60,6 +60,10 @@ const Page = class extends Row {
         await this.children();
         return this._children['c'];
     }
+    async pages() {
+        await this.children();
+        return this._children['p'];
+    }
     async cont(name, attris={}) {
         await this.contents();
         if (!this._named['c'][name]) {
