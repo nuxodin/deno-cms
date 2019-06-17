@@ -17,9 +17,8 @@ const Page = class extends Row {
         if (!string) string = '<div></div>';
         string = string.trim();
         //const data = await this.values();
-        let $attr = ' vcms-id="'+this.eid+'" vcms-mod="'+module+'"';
-        string = string.replace(/^<([^\s>]+)([\s]?)>/, '<$1 '+$attr+'$2>');
-        return string;
+        let attr = 'vcms-id='+this.eid+' vcms-mod="'+module+'"';
+        return string.replace(/^<([^\s>]+)([\s]?)>/, '<$1 '+attr+'$2>');
     }
     async text(name='main', lang=null/*, value=null*/) {
         if (!this._texts) this._texts = {};
