@@ -16,7 +16,6 @@ const Page = class extends Row {
         let string = await templates[module](this);
         if (!string) string = '<div></div>';
         string = string.trim();
-        //const data = await this.values();
         let attr = 'vcms-id='+this.eid+' vcms-mod="'+module+'"';
         return string.replace(/^<([^\s>]+)([\s]?)>/, '<$1 '+attr+'$2>');
     }
