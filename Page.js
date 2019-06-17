@@ -1,9 +1,11 @@
 import Row from 'https://raw.githubusercontent.com/nuxodin/nux_db/master/Row.js';
-import TextPro from './TextPro.mjs';
+import TextPro from './TextPro.js';
+
+import templates from './templates.js';
 
 const Page = class extends Row {
-    constructor(table, id) {
-        const P = super(table, id);
+    constructor(db, id) {
+        const P = super(db, id);
         this.edit = true;
         return P;
     }
@@ -13,40 +15,12 @@ const Page = class extends Row {
         if (!templates[mod]) return '<div>module does not exist</div>';
         let string = await templates[mod](this);
         if (!string) string = '<div></div>';
-
         const data = await this.values();
-
-        let className = 'qgCms'+(data['type']==='c'?'Cont':'Page')+' -pid'+this.eid+' -m-'+ data.module.replace('.','-');
-        // $expose = cms::classesExposeCss();
-        // if ($expose)
-        // 	foreach ($this->classes() as $name => $egal)
-        // 		if (isset($expose[$name]))
-        // 			className .= ' '.$name;
-
-        //if (this.edit) className .= ' -e';
         let $attr = ' vcms-id="'+this.eid+'" vcms-mod="'+data['module']+'"';
-        // if (data['type']==='c' && data['visible']) {
-        // 	$attr = ' id="'.hee(substr(this.urlSeo(L()), 1)).'"';
-        // }
-        // $attr .= ' vcms-id='.this.id; // future
-        // $attr .= ' vcms-mod='.data['module'];
-        //        let $done = null;
-
-        string = string.replace(/^<([^>]+)class=("([^"]*)"|([^\s>]*))/, '<$1class="$3$4 '+className+'"'+$attr);
-
-        // $ret = preg_replace('/^<([^>]+)class=("([^"]*)"|([^\s>]*))/','<$1class="$3$4 '.className.'"'.$attr, string, 1, $done);
-        // if ($done) return $ret;
-
-        string = string.replace(/^<([^\s>]+)([\s]?)/, '<$1 class="'+className+'"'+$attr+'$2');
-        //$ret = preg_replace('/^<([^\s>]+)([\s]?)/','<$1 class="'.className.'"'.$attr.'$2', string, 1, $done);
-
-        //if ($done) return $ret;
-        //return '<div class="'.className.'"'.$attr.'>'.$ret.'</div>';
-
-
+        string = string.replace(/^<([^\s>]+)([\s]?)/, '<$1 '+$attr+'$2');
         return string;
     }
-    async Text(name='main', lang=null/*, value=null*/) {
+    async text(name='main', lang=null/*, value=null*/) {
         if (!this._texts) this._texts = {};
         if (!this._texts[name]) {
             const rowId = await this.db.$page_text.rowId({page_id:this.eid, name});
