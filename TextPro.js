@@ -3,6 +3,9 @@ class TextPro {
     constructor(db, id){
         this.db = db;
         this.id = id;
+
+        console.log(this.id);
+
         this._texts = {};
         all[id] = this;
     }
