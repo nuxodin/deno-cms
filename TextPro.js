@@ -33,8 +33,8 @@ class TextPro {
 }
 
 const all = {};
-function TextPro_factory(id){
-    return all[id] || new TextPro(id);
+function TextPro_factory(db, id){
+    return all[id] || new TextPro(db, id);
 }
 TextPro_factory.generate = async function(db){
     const data = {lang:'en'};
