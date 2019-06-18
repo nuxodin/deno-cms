@@ -33,7 +33,7 @@ const Page = class extends Row {
             this._texts[name] = await TextPro(this.db, text_id);
         }
         const row = await this._texts[name].get(lang);
-        return await row.$text || '';
+        return await row;
     }
     async title(lang) {
         const id = await this.$title_id;
