@@ -11,7 +11,7 @@ const Page = class extends Row {
     }
     async render() {
         let module = await this.$module;
-        if (!templates[module]) return '<div>module does not exist</div>';
+        if (!templates[module]) return '<div>webmaster: module does not exist</div>';
         let string = await templates[module](this);
         if (!string) string = '<div></div>';
         string = string.trim();
@@ -93,7 +93,7 @@ const Page = class extends Row {
             visible      : 1,
         }, options);
         const page = await this.table.insert(options);
-        this._namedContents = this._contents = null;
+        this._named = this._children = null;
 
         // if (!$id) return $Page; versions?
 

@@ -57,14 +57,11 @@ class cms {
             mainPage = this.Page(88);
         }
 
-        var content = await mainPage.render();
+        var body = await mainPage.render();
         return `<html>
             <head>
             </head>
-            <body>
-                ${content}
-            </body>
-        </html>`;
+            <body>${body}`;
 
         //res.send(content);
         // $Page = Page()->Page;
