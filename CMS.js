@@ -3,7 +3,7 @@ import pageClass from './Page.js';
 class cms {
     constructor(db){
         this.db = db;
-        this.db.$page.rowClass = pageClass;
+        this.db.$page.rowClass = pageClass; // bad here!
     }
     Page(id){
         return this.db.$page.row(id);
