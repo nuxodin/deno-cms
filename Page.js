@@ -1,6 +1,5 @@
 import Row from 'https://raw.githubusercontent.com/nuxodin/nux_db/master/Row.js';
 import TextPro from './TextPro.js';
-
 import templates from './templates.js';
 
 const Page = class extends Row {
@@ -134,9 +133,8 @@ const Page = class extends Row {
         }
         return this._urls[lang].$url;
     }
-    access(){ return true; }
-    isReadable(){ return true; }
-    //text(name='main', lang=null, value=null){ return 'todo'; }
+    async access(usr){ return true; }
+    async isReadable(usr){ return true; }
 };
 
 export default Page;
