@@ -60,25 +60,7 @@ class cms {
         var body = await mainPage.render();
         return `<html>
             <head>
-            </head>
             <body>${body}`;
-
-        //res.send(content);
-        // $Page = Page()->Page;
-        // $title = strip_tags($Page->Text('_title'));
-        // html::$title = trim($title) ? $title : strip_tags($Page->Title());
-        // html::$meta['description'] = strip_tags($Page->text('_meta_description'));
-        // html::$meta['keywords']    = strip_tags($Page->text('_meta_keywords'));
-        // html::$meta['generator']   = 'Vanilla CMS 5.0';
-        //
-        // qg::fire('deliverHtml'); // deprecated
-        // //qg::fire('cms::output-before'); // todo
-        // html::$content .= self::$MainPage->get();
-        // qg::fire('cms-ready'); // deprecated
-        // //qg::fire('cms::output-after'); // todo
-
-        // html.content = await mainPage.get();
-        // html.output();
     }
 }
 
