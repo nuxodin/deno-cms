@@ -3,10 +3,12 @@ import pageClass from './Page.js';
 class cms {
     constructor(db){
         this.db = db;
-        this.db.$page.rowClass = pageClass; // bad here !
+        this.db.table('page').rowClass = pageClass; // bad here !
     }
     Page(id){
-        return this.db.$page.row(id);
+        //if (!this.pages[id]) this.pages[id] = new Page(this, id); // todo
+        //return this.pages[id];
+        return this.db.table('page').row(id);
     }
     async pageFromRequest(url) {
         var page_id = await this.db.one("SELECT page_id FROM page_url WHERE url = "+this.db.quote(url));
@@ -18,7 +20,7 @@ class cms {
         if (!redirect) return false;
         if (redirect.match(/[0-9]+/)) {
             let page = this.Page(redirect);
-            //url = $_SERVER['SCHEME'].'://'.$_SERVER['HTTP_HOST'].Page($redirect)->url();
+            //url = server.scheme+'://'+server.host + Page(redirect)->url();
             return await page.url('de');
         }
         //const url = redirect;
