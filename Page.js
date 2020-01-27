@@ -1,4 +1,6 @@
-import Row from 'https://raw.githubusercontent.com/nuxodin/nux_db/master/Row.js';
+//import Row from 'https://raw.githubusercontent.com/nuxodin/nux_db/master/Row.js';
+import Row from '../nux_db/Row.js';
+
 import TextPro from './TextPro.js';
 import templates from './templates.js';
 
@@ -21,8 +23,8 @@ const Page = class extends Row {
     async text(name='main', lang=null/*, value=null*/) {
         if (!this._texts) this._texts = {};
         if (!this._texts[name]) {
-            const rowId = await this.db.$page_text.rowId({page_id:this.eid, name});
-            const row   = this.db.$page_text.row(rowId);
+            const rowId = await this.db.table('page_text').rowId({page_id:this.eid, name});
+            const row   = this.db.table('page_text').row(rowId);
             await row.makeIfNot();
             let text_id = await row.$text_id;
             if (!text_id) {
